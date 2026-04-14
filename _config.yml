@@ -1,0 +1,42 @@
+title: "Roadhouse Labs"
+tagline: "Field Notes from the Network"
+description: >
+  Roadhouse Labs publishes production-grade self-hosting guides by an engineer with
+  experience as a Senior Network Engineer at NASA and now as a Senior Network DevOps
+  Engineer at an international organization supporting 10,000+ sites. Real configs,
+  real gotchas, no hand-waving.
+author: "Roadhouse Labs"
+email: "rhlabsorg@gmail.com"
+baseurl: "/roadhouse-labs-guides"
+url: "https://jconwell3115.github.io"
+
+# Dark mode via minima skin
+theme: minima
+minima:
+  skin: dark
+  date_format: "%B %-d, %Y"
+  header_pages:
+    - guides.md
+    - about.md
+
+# Build settings
+markdown: kramdown
+highlighter: rouge
+permalink: /:categories/:year/:month/:day/:title/
+
+kramdown:
+  input: GFM
+  syntax_highlighter: rouge
+  syntax_highlighter_opts:
+    block:
+      line_numbers: false
+
+plugins:
+  - jekyll-feed
+  - jekyll-seo-tag
+
+exclude:
+  - README.md
+  - Gemfile
+  - Gemfile.lock
+  - vendor/
