@@ -15,7 +15,7 @@ theme: minima
 minima:
   skin: dark
   date_format: "%B %-d, %Y"
-  header_pages:
+  nav_pages:
     - guides.md
     - about.md
 
