@@ -15,9 +15,11 @@ theme: minima
 minima:
   skin: dark
   date_format: "%B %-d, %Y"
-  nav_pages:
-    - guides.md
-    - about.md
+
+# Minima 2.5.1 on GitHub Pages expects navigation pages here, not under `minima:`.
+header_pages:
+  - guides.md
+  - about.md
 
 # Build settings
 markdown: kramdown
