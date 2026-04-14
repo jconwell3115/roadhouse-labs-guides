@@ -16,6 +16,8 @@ The focus is on self-hosting with modern Linux tooling: Podman, systemd quadlets
 firewalld, and the principle that your home network deserves the same rigor as
 production infrastructure.
 
+[Roadhouse Lab Guides](https://jconwell3115.github.io/roadhouse-labs-guides/)
+
 ---
 
 All configs and scripts on this site are MIT licensed unless otherwise noted.
