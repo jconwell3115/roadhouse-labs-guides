@@ -15,11 +15,11 @@ theme: jekyll-theme-slate
 
 nav_links:
   - title: Home
-    url: /
+    url: /roadhouse-labs-guides/
   - title: Guides
-    url: /guides/
+    url: /roadhouse-labs-guides/guides/
   - title: About
-    url: /about/
+    url: /roadhouse-labs-guides/about/
 
 # Build settings
 markdown: kramdown
