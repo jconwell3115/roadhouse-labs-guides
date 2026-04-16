@@ -10,8 +10,16 @@ email: "rhlabsorg@gmail.com"
 baseurl: "/roadhouse-labs-guides"
 url: "https://jconwell3115.github.io"
 
-# GitHub Pages built-in dark theme
-theme: jekyll-theme-midnight
+# GitHub Pages built-in theme
+theme: jekyll-theme-slate
+
+nav_links:
+  - title: Home
+    url: /
+  - title: Guides
+    url: /guides/
+  - title: About
+    url: /about/
 
 # Build settings
 markdown: kramdown
