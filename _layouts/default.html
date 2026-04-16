@@ -27,8 +27,8 @@
                 {% assign is_external = item.url contains '://' %}
                 {% assign item_path = item.url | default: '/' %}
                 <li>
-                  <a href="{% if is_external %}{{ item.url }}{% else %}{{ item_path | prepend: site.baseurl }}{% endif %}"
-                    {% unless is_external %}{% if current_url == item_path %}class="active"{% endif %}{% endunless %}
+                  <a href="{{ item.url }}"
+                    {% unless is_external %}{% if page.url == '/' and item.url == site.baseurl | append: '/' %}class="active"{% elsif page.url != '/' and item.url == site.baseurl | append: page.url %}class="active"{% endif %}{% endunless %}
                     {% if is_external %}target="_blank" rel="noopener noreferrer"{% endif %}>
                     {{ item.title }}
                   </a>
