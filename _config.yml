@@ -10,16 +10,8 @@ email: "rhlabsorg@gmail.com"
 baseurl: "/roadhouse-labs-guides"
 url: "https://jconwell3115.github.io"
 
-# Dark mode via minima skin
-theme: minima
-minima:
-  skin: dark
-  date_format: "%B %-d, %Y"
-
-# Minima 2.5.1 on GitHub Pages expects navigation pages here, not under `minima:`.
-header_pages:
-  - guides.md
-  - about.md
+# GitHub Pages built-in dark theme
+theme: jekyll-theme-midnight
 
 # Build settings
 markdown: kramdown
