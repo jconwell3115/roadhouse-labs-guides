@@ -21,14 +21,16 @@
 
         {% if site.nav_links %}
           {% assign current_url = page.url | default: '/' | replace: 'index.html', '' %}
+          {% assign site_base = site.baseurl | default: '' %}
           <nav class="site-nav" aria-label="Primary">
             <ul>
               {% for item in site.nav_links %}
                 {% assign is_external = item.url contains '://' %}
-                {% assign item_url = item.url | relative_url %}
+                {% assign item_path = item.url | default: '/' %}
+                {% assign item_href = site_base | append: item_path %}
                 <li>
-                  <a href="{% if is_external %}{{ item.url }}{% else %}{{ item_url }}{% endif %}"
-                    {% unless is_external %}{% if current_url == item_url %}class="active"{% endif %}{% endunless %}
+                  <a href="{% if is_external %}{{ item.url }}{% else %}{{ item_href }}{% endif %}"
+                    {% unless is_external %}{% if current_url == item_path %}class="active"{% endif %}{% endunless %}
                     {% if is_external %}target="_blank" rel="noopener noreferrer"{% endif %}>
                     {{ item.title }}
                   </a>
