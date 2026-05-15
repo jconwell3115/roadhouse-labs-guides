@@ -28,9 +28,3 @@ troubleshooting based on things that actually broke.
 
 ## Latest Posts
 
-- **[Why I Run My Own WireGuard VPN Server at Home]({% post_url 2026-05-14-wireguard-vpn %})** —
-  Why I use WireGuard and wg-easy for clean remote access, safer travel connectivity,
-  and predictable self-hosted VPN operations.
-- **[Why I Run Pi-hole on My Home Network (And You Should Too)]({% post_url 2026-04-13-pihole-home-network %})** —
-  Why DNS control matters at home, from ad blocking and malware prevention to
-  privacy and network visibility.
