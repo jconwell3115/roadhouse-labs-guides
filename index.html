@@ -2,6 +2,8 @@
 layout: home
 # Kept as .html (not .md): jekyll-paginate only paginates an index.html.
 # The intro below is Markdown, rendered with markdownify.
+# Everything before <!-- post-list --> shows above the post list, the rest below it
+# (see _layouts/home.html).
 ---
 
 {% capture intro %}
@@ -14,6 +16,9 @@ DevOps Engineer. Roadhouse Labs is where I bring that same rigor to self-hosting
 Every guide is built from configs I actually run. Each setting is explained, every
 gotcha is documented, and nothing is left as "an exercise for the reader."
 
+## Latest Posts
+{% endcapture %}
+{% capture guides %}
 ## Guides
 
 - **[Pi-hole with Podman Quadlets]({{ '/guides/pihole-quadlet-guide' | relative_url }})** —
@@ -25,7 +30,7 @@ gotcha is documented, and nothing is left as "an exercise for the reader."
 - **[Cloudflare Tunnel with Podman Quadlets]({{ '/guides/cloudflare-tunnel-quadlet-guide' | relative_url }})** —
   Full setup guide: domain and DNS on Cloudflare, `cloudflared` as a rootful quadlet,
   tunnel ingress rules, and Cloudflare Access for admin UIs — no open ports.
-
-## Latest Posts
 {% endcapture %}
 {{ intro | markdownify }}
+<!-- post-list -->
+{{ guides | markdownify }}

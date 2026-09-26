@@ -4,8 +4,8 @@ layout: default
 
 {% comment %}
   Copy of jekyll-theme-chirpy 7.6.0 _layouts/home.html, with one addition:
-  the page's own content (the site intro in index.html) is shown above the
-  post list on the first page. Re-copy from the gem if Chirpy's home layout changes.
+  the page's own content (index.html) is shown on the first page, split at
+  <!-- post-list -->: the intro above the post list and the guides below it. Re-copy from the gem if Chirpy's home layout changes.
 {% endcomment %}
 
 {% include lang.html %}
@@ -52,9 +52,11 @@ layout: default
   {% endfor %}
 {% endif %}
 
-{% if paginator.page == 1 and content != empty %}
+{% assign home_parts = content | split: '<!-- post-list -->' %}
+
+{% if paginator.page == 1 and home_parts[0] != blank %}
   <div id="home-intro" class="content px-xl-1 mb-4">
-    {{ content }}
+    {{ home_parts[0] }}
   </div>
 {% endif %}
 
@@ -149,4 +151,10 @@ layout: default
 
 {% if paginator.total_pages > 1 %}
   {% include post-paginator.html %}
+{% endif %}
+
+{% if paginator.page == 1 and home_parts[1] != blank %}
+  <div id="home-guides" class="content px-xl-1 mt-5">
+    {{ home_parts[1] }}
+  </div>
 {% endif %}
