@@ -23,8 +23,20 @@ troubleshooting based on things that actually broke.
 - **[WireGuard Easy with Podman Quadlets]({{ '/guides/wg-easy-quadlet-guide' | relative_url }})** —
   Full installation guide: running wg-easy as a rootful Podman quadlet with
   nftables firewall hooks, client setup, and management tips.
+- **[Cloudflare Tunnel with Podman Quadlets]({{ '/guides/cloudflare-tunnel-quadlet-guide' | relative_url }})** —
+  Full setup guide: domain and DNS on Cloudflare, `cloudflared` as a rootful quadlet,
+  tunnel ingress rules, and Cloudflare Access for admin UIs — no open ports.
 
 ---
 
 ## Latest Posts
 
+- **[Why I Expose Home Services Through a Cloudflare Tunnel (With Zero Open Ports)]({% post_url 2026-09-25-cloudflare-tunnel %})** —
+  Why outbound-only tunnels beat port forwarding, and how I split public apps from
+  admin UIs gated by Cloudflare Access.
+- **[Why I Run My Own WireGuard VPN Server at Home]({% post_url 2026-05-14-wireguard-vpn %})** —
+  Why I use WireGuard and wg-easy for clean remote access, safer travel connectivity,
+  and predictable self-hosted VPN operations.
+- **[Why I Run Pi-hole on My Home Network (And You Should Too)]({% post_url 2026-04-13-pihole-home-network %})** —
+  Why DNS control matters at home, from ad blocking and malware prevention to
+  privacy and network visibility.

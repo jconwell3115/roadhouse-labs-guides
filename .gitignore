@@ -1,0 +1,9 @@
+# Local tooling, not part of the site
+logs/
+.github/
+.pre-commit-config.yaml
+
+# Jekyll build output
+_site/
+.jekyll-cache/
+.sass-cache/
