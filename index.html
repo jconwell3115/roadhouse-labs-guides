@@ -4,6 +4,8 @@ layout: home
 # The intro below is Markdown, rendered with markdownify.
 # Everything before <!-- post-list --> shows above the post list, the rest below it
 # (see _layouts/home.html).
+# Latest Posts and Latest Guides each show the newest 3 automatically
+# (posts: `paginate: 3` in _config.yml; guides: the loop below, by `date`).
 ---
 
 {% capture intro %}
@@ -19,17 +21,27 @@ gotcha is documented, and nothing is left as "an exercise for the reader."
 ## Latest Posts
 {% endcapture %}
 {% capture guides %}
-## Guides
+[All posts →]({{ '/archives/' | relative_url }})
 
-- **[Pi-hole with Podman Quadlets]({{ '/guides/pihole-quadlet-guide' | relative_url }})** —
-  Full installation guide: quadlet files explained line by line, firewall
-  configuration, automated gravity updates, and Unbound integration.
-- **[WireGuard Easy with Podman Quadlets]({{ '/guides/wg-easy-quadlet-guide' | relative_url }})** —
-  Full installation guide: running wg-easy as a rootful Podman quadlet with
-  nftables firewall hooks, client setup, and management tips.
-- **[Cloudflare Tunnel with Podman Quadlets]({{ '/guides/cloudflare-tunnel-quadlet-guide' | relative_url }})** —
-  Full setup guide: domain and DNS on Cloudflare, `cloudflared` as a rootful quadlet,
-  tunnel ingress rules, and Cloudflare Access for admin UIs — no open ports.
+## Latest Guides
+
+{% assign latest_guides = site.guides | sort: 'date' | reverse %}
+{% for guide in latest_guides limit: 3 -%}
+- **[{{ guide.title }}]({{ guide.url | relative_url }})** — {{ guide.description }}
+{% endfor %}
+
+[All guides →]({{ '/guides/' | relative_url }})
+
+## Coming Soon
+
+- **Boring Infrastructure: How My Home Lab Fits Together** —
+  The big picture: tunnel, VPN, DNS, secrets, backups, and monitoring, and how
+  each piece connects.
+- **Podman Series, Part 1: Rootful vs. Rootless** —
+  What actually changes between the two modes, and how to choose for each service.
+- **Podman Series, Part 2: Quadlets from Scratch** —
+  Running containers as native systemd services, rootful and rootless, with every
+  unit file explained.
 {% endcapture %}
 {{ intro | markdownify }}
 <!-- post-list -->

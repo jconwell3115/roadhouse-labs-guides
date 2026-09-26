@@ -56,7 +56,8 @@ pwa:
   cache:
     enabled: true
 
-paginate: 10
+# Home page shows the latest 3 posts; "All posts" links to /archives/
+paginate: 3
 
 # ------------ Chirpy internals (from the starter; change with care) ------------
 

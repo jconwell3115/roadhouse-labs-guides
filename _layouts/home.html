@@ -5,7 +5,8 @@ layout: default
 {% comment %}
   Copy of jekyll-theme-chirpy 7.6.0 _layouts/home.html, with one addition:
   the page's own content (index.html) is shown on the first page, split at
-  <!-- post-list -->: the intro above the post list and the guides below it. Re-copy from the gem if Chirpy's home layout changes.
+  <!-- post-list -->: the intro above the post list and the guides below it.
+  The paginator is replaced by an "All posts" link in index.html. Re-copy from the gem if Chirpy's home layout changes.
 {% endcomment %}
 
 {% include lang.html %}
@@ -149,9 +150,10 @@ layout: default
 </div>
 <!-- #post-list -->
 
-{% if paginator.total_pages > 1 %}
-  {% include post-paginator.html %}
-{% endif %}
+{% comment %}
+  Page-number buttons removed: the home page shows only the latest posts and links to
+  /archives/ for the rest (see index.html).
+{% endcomment %}
 
 {% if paginator.page == 1 and home_parts[1] != blank %}
   <div id="home-guides" class="content px-xl-1 mt-5">
