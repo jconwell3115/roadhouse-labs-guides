@@ -1,5 +1,6 @@
 ---
-layout: page
+layout: post
+date: 2026-09-25
 title: "Cloudflare Tunnel with Podman Quadlets"
 permalink: /guides/cloudflare-tunnel-quadlet-guide
 description: "Full setup guide: moving a domain to Cloudflare, running cloudflared as a rootful Podman quadlet, routing DNS through the tunnel, and locking admin UIs behind Cloudflare Access — with zero inbound ports open."

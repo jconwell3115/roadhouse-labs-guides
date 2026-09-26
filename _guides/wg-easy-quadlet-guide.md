@@ -1,5 +1,6 @@
 ---
-layout: page
+layout: post
+date: 2026-05-14
 title: "WireGuard Easy with Podman Quadlets"
 permalink: /guides/wg-easy-quadlet-guide
 description: "Full installation guide: running wg-easy as a rootful Podman quadlet with nftables firewall hooks, client setup, and management tips."

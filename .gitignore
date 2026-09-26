@@ -1,9 +1,12 @@
 # Local tooling, not part of the site
 logs/
-.github/
+.github/copilot-instructions.md
 .pre-commit-config.yaml
 
 # Jekyll build output
 _site/
 .jekyll-cache/
 .sass-cache/
+.jekyll-metadata
+Gemfile.lock
+vendor/

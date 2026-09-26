@@ -1,7 +1,7 @@
 ---
-layout: page
-title: About Roadhouse Labs
-permalink: /about/
+title: About
+icon: fas fa-info-circle
+order: 5
 ---
 
 **Roadhouse Labs** is the personal brand and publishing home of an engineer whose

@@ -1,44 +1,145 @@
+# Site configuration (Chirpy theme: https://github.com/cotes2020/jekyll-theme-chirpy)
+
+theme: jekyll-theme-chirpy
+
+lang: en
+timezone: America/New_York
+
+# ↓ jekyll-seo-tag settings
 title: "Roadhouse Labs"
 tagline: "Field Notes from the Network"
-description: >
+description: >-
   Roadhouse Labs publishes production-grade self-hosting guides by an engineer with
   experience as a Senior Network Engineer at NASA and now as a Senior Network DevOps
   Engineer at an international organization supporting 10,000+ sites. Real configs,
   real gotchas, no hand-waving.
-author: "Roadhouse Labs"
-email: "rhlabsorg@gmail.com"
-baseurl: "/roadhouse-labs-guides"
+
 url: "https://jconwell3115.github.io"
+baseurl: "/roadhouse-labs-guides"
 
-# GitHub Pages built-in theme
-theme: jekyll-theme-slate
+github:
+  username: jconwell3115
 
-nav_links:
-  - title: Home
-    url: /roadhouse-labs-guides/
-  - title: Guides
-    url: /roadhouse-labs-guides/guides/
-  - title: About
-    url: /roadhouse-labs-guides/about/
+social:
+  # Default post author and footer copyright owner
+  name: "Roadhouse Labs"
+  email: "rhlabsorg@gmail.com"
+  links:
+    - https://github.com/jconwell3115
+# ↑ jekyll-seo-tag settings
 
-# Build settings
-markdown: kramdown
-highlighter: rouge
-permalink: /:categories/:year/:month/:day/:title/
+# Empty = follow the reader's OS setting, with a light/dark toggle in the sidebar.
+# Set to "dark" to force dark mode for everyone (the toggle is then hidden).
+theme_mode:
+
+avatar:
+social_preview_image:
+
+toc: true
+
+analytics:
+  google:
+    id:
+
+pageviews:
+  provider:
+
+comments:
+  provider:
+
+assets:
+  self_host:
+    enabled:
+
+pwa:
+  enabled: true
+  cache:
+    enabled: true
+
+paginate: 10
+
+# ------------ Chirpy internals (from the starter; change with care) ------------
 
 kramdown:
-  input: GFM
+  footnote_backlink: "&#8617;&#xfe0e;"
   syntax_highlighter: rouge
   syntax_highlighter_opts:
-    block:
+    css_class: highlight
+    span:
       line_numbers: false
+    block:
+      line_numbers: true
+      start_line: 1
 
-plugins:
-  - jekyll-feed
-  - jekyll-seo-tag
+collections:
+  tabs:
+    output: true
+    sort_by: order
+  # Long-form guides: each sets its own permalink (/guides/<name>) in front matter
+  guides:
+    output: true
+
+defaults:
+  - scope:
+      path: ""
+      type: posts
+    values:
+      layout: post
+      comments: false
+      toc: true
+      # Kept from the previous theme so existing post URLs keep working
+      permalink: /:categories/:year/:month/:day/:title/
+  - scope:
+      path: _drafts
+    values:
+      comments: false
+  - scope:
+      path: ""
+      type: tabs
+    values:
+      layout: page
+      permalink: /:title/
+  # Guides use the post layout for the table of contents and read time
+  - scope:
+      path: ""
+      type: guides
+    values:
+      layout: post
+      toc: true
+
+sass:
+  style: compressed
+
+compress_html:
+  clippings: all
+  comments: all
+  endings: all
+  profile: false
+  blanklines: false
+  ignore:
+    envs: [development]
 
 exclude:
+  - "*.gem"
+  - "*.gemspec"
+  - docs
+  - tools
   - README.md
+  - LICENSE
+  - serve.sh
+  - logs
   - Gemfile
   - Gemfile.lock
-  - vendor/
+  - vendor
+  - purgecss.js
+  - "*.config.js"
+  - "package*.json"
+
+jekyll-archives:
+  enabled: [categories, tags]
+  layouts:
+    category: category
+    tag: tag
+  permalinks:
+    tag: /tags/:name/
+    category: /categories/:name/

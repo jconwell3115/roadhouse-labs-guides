@@ -1,7 +1,7 @@
 ---
-layout: page
 title: Guides
-permalink: /guides/
+icon: fas fa-book
+order: 1
 ---
 
 Technical self-hosting guides with full configurations and real-world gotchas documented.

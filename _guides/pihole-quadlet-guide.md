@@ -1,5 +1,6 @@
 ---
-layout: page
+layout: post
+date: 2026-04-13
 title: "Pi-hole with Podman Quadlets"
 permalink: /guides/pihole-quadlet-guide
 description: "Full installation guide: quadlet files explained, firewall config, automated gravity updates, and Unbound integration."
