@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <title>Roadhouse Labs</title>
+  <rect width="512" height="512" fill="#0f1512"/>
+  <rect x="80" y="140" width="352" height="232" rx="26" fill="#17221b" stroke="#3ddc84" stroke-width="10"/>
+  <circle cx="118" cy="176" r="9" fill="#3ddc84" opacity=".55"/>
+  <circle cx="146" cy="176" r="9" fill="#3ddc84" opacity=".35"/>
+  <circle cx="174" cy="176" r="9" fill="#3ddc84" opacity=".2"/>
+  <g fill="none" stroke="#3ddc84" stroke-width="22" stroke-linecap="round" stroke-linejoin="round">
+    <!-- r -->
+    <path d="M124 240v70M124 268c0-20 14-30 32-30h8"/>
+    <!-- h -->
+    <path d="M192 204v106M192 268c0-20 13-30 30-30s30 10 30 30v42"/>
+    <!-- # -->
+    <path d="M306 226l-7 84M336 226l-7 84M290 253h56M286 285h56"/>
+  </g>
+  <!-- cursor -->
+  <rect x="370" y="238" width="32" height="72" rx="3" fill="#3ddc84"/>
+</svg>

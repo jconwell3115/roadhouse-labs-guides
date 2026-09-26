@@ -32,8 +32,8 @@ social:
 # Set to "dark" to force dark mode for everyone (the toggle is then hidden).
 theme_mode:
 
-avatar:
-social_preview_image:
+avatar: /assets/img/avatar.svg
+social_preview_image: /assets/img/favicons/web-app-manifest-512x512.png
 
 toc: true
 

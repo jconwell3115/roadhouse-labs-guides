@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <title>Roadhouse Labs</title>
+  <rect width="64" height="64" rx="12" fill="#0f1512"/>
+  <g fill="none" stroke="#3ddc84" stroke-width="5.5" stroke-linecap="round">
+    <path d="M20 14l-3 36M32 14l-3 36M11 25h25M9 39h25"/>
+  </g>
+  <rect x="41" y="18" width="12" height="32" rx="1.5" fill="#3ddc84"/>
+</svg>
