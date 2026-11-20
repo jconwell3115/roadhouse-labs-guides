@@ -27,3 +27,10 @@ Technical self-hosting guides with full configurations and real-world gotchas do
   Expose self-hosted services without port forwarding: moving a domain to Cloudflare
   DNS, running `cloudflared` as a rootful Podman quadlet, routing hostnames through
   the tunnel, and gating admin UIs with Cloudflare Access.
+
+### Photos & Media
+
+- **[Immich with Podman Quadlets]({{ '/guides/immich-quadlet-guide' | relative_url }})** —
+  Self-hosted photo and video library as four rootful Podman quadlets ordered with
+  `Requires=`. Covers CLI uploads over the LAN, a nightly backup timer under SELinux,
+  automatic updates within a major version, and safe major-version upgrades.
