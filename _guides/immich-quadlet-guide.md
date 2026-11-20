@@ -167,6 +167,10 @@ Network=immich.network
 # Models download here on first use, so they survive container recreation
 Volume=/path/to/your/containers/immich/model-cache:/cache:Z
 EnvironmentFile=/path/to/your/containers/immich/immich.env
+# Pin the ML listen port. The server expects ML at immich-machine-learning:3003,
+# but ML reads IMMICH_PORT too, so a server port in the shared env file would
+# move it. Environment= wins over EnvironmentFile=.
+Environment=IMMICH_PORT=3003
 
 [Service]
 Restart=always
@@ -177,7 +181,9 @@ TimeoutStartSec=900
 WantedBy=multi-user.target default.target
 ```
 
-No `PublishPort=`: only the server talks to machine learning, over the `immich` network. For GPU or other hardware
+No `PublishPort=`: only the server talks to machine learning, over the `immich` network, at
+`http://immich-machine-learning:3003`. The `Environment=IMMICH_PORT=3003` line keeps it there: see
+[the shared env file gotcha](#the-shared-env-file-gotcha). For GPU or other hardware
 acceleration, switch to the matching image tag (for example `v3-cuda` or `v3-openvino`) and add the device
 mappings from the [upstream hardware acceleration docs](https://immich.app/docs/features/ml-hardware-acceleration).
 
@@ -257,13 +263,47 @@ DB_DATABASE_NAME=immich
 REDIS_HOSTNAME=immich-redis
 REDIS_PORT=6379
 
-IMMICH_HOST=0.0.0.0
-IMMICH_PORT=2283
+# Don't set IMMICH_HOST or IMMICH_PORT here (see below)
 IMMICH_LOG_LEVEL=log
 ```
 
 `DB_PASSWORD` only takes effect when Postgres initializes an empty data directory. Changing it later means
 changing it inside the database too.
+
+#### The shared env file gotcha
+
+> **Fixed in this guide:** an earlier version put `IMMICH_HOST=0.0.0.0` and `IMMICH_PORT=2283` in this file. If
+> you copied it, remove those two lines, add the `Environment=IMMICH_PORT=3003` line to
+> `immich-machine-learning.container`, and restart both services (steps below).
+
+All three Immich containers read this one file, and the server and the machine-learning container both read
+`IMMICH_PORT` as **their own** listen port. Setting `IMMICH_PORT=2283` here moves machine learning from its default
+`3003` to `2283`. The server still calls `http://immich-machine-learning:3003`, gets connection refused, and logs:
+
+```
+Machine learning request ... failed for all URLs
+```
+
+Face detection and OCR fail quietly. Uploads, thumbnails and the timeline keep working, so nothing looks broken.
+Mine ran like that for two weeks before I noticed.
+
+The fix has two parts:
+
+- **Keep server-only settings out of the shared file.** The server's defaults are already `0.0.0.0:2283`, so
+  this file doesn't need either line.
+- **Pin the ML port in its own quadlet** with `Environment=IMMICH_PORT=3003`. Quadlet's `Environment=` overrides
+  `EnvironmentFile=`, so machine learning stays on `3003` even if the port ends up back in the shared file.
+
+If you hit this on a running stack, fix the files and then:
+
+```bash
+sudo cp immich-machine-learning.container /etc/containers/systemd/immich/
+sudo systemctl daemon-reload
+sudo systemctl restart immich-machine-learning.service immich-server.service
+```
+
+Then catch up on the photos uploaded while it was broken: **Administration → Jobs**, and run **Missing** for
+**Face Detection** and **OCR**.
 
 ### 3. Customize the quadlet files
 
@@ -561,6 +601,7 @@ has run, the next restart or auto-update run makes the jump.
 | `401 Unauthorized` from the CLI        | Wrong or revoked API key. `immich logout`, create a new key, log in again.                                                                                                                            |
 | CLI errors right after a server update   | CLI and server versions differ. Reinstall the CLI at the server's version.                                                                                                                              |
 | Smart search returns `500`             | Machine-learning container failing. `sudo journalctl -u immich-machine-learning -n 100`.                                                                                                              |
+| Server logs `Machine learning request ... failed for all URLs` | Machine learning isn't listening on `3003`, usually because `IMMICH_PORT` leaked in from the shared env file. See [the shared env file gotcha](#the-shared-env-file-gotcha). |
 | Whole stack won't start                  | Something in the `Requires=` chain failed. Check `immich-postgres` first.                                                                                                                           |
 | Backup service: `Permission denied`    | The service is missing its `SELinuxContext=` line. See [the SELinux gotcha](#the-selinux-gotcha).                                                                                                      |
 | New uploads have no thumbnails for hours | Jobs still queued. Check **Administration → Jobs**.                                                                                                                                              |
@@ -573,7 +614,8 @@ Under **Administration → Jobs**, run the non-forced version for anything missi
 - Missing thumbnails: **Generate Thumbnails**
 - Wrong dates or locations: **Extract Metadata**
 - Storage template changed: **Storage Template Migration**
-- Faces or smart search missing: **Face Detection** / **Smart Search**
+- Faces, smart search or OCR missing: **Face Detection** / **Smart Search** / **OCR** (check the server logs for
+  machine-learning errors first)
 
 ---
 

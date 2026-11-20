@@ -54,6 +54,10 @@ A few decisions that came from running it for real:
   Kuma. If the check-in doesn't arrive, I hear about it.
 - **SELinux stays on.** That made the backup job harder to write (more on that in the guide), but it's still a
   better trade than turning SELinux off.
+- **A shared env file can bite.** All the containers read one `immich.env`. I'd put the server's port in it,
+  and the machine-learning container read the same variable and moved off its own port. Face detection and OCR
+  failed quietly for two weeks while everything else looked fine. Now the shared file holds only what every
+  container needs, and the ML port is pinned in its own quadlet.
 
 ---
 
